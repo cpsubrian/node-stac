@@ -4,6 +4,7 @@ function Stac(options) {
 
   options = options || {};
 
+  this._options = options;
   this._sorted = false;
   this._stack = [];
   this._prop = options.prop || 'weight';
@@ -13,6 +14,10 @@ function Stac(options) {
     if (a.val === b.val) return 0;
     return a.val < b.val ? -1 : 1;
   };
+
+  this.__defineGetter__('length', function () {
+    return self._stack.length;
+  });
 }
 
 Stac.prototype._getVal = function (obj) {
@@ -111,8 +116,10 @@ Stac.prototype.shift = function () {
   return this._stack.shift().obj;
 };
 
-Stac.prototype.length = function () {
-  return this._stack.length;
+Stac.prototype.clone = function () {
+  var clone = new Stac(this._options);
+  clone._stack = this._stack.slice(0);
+  return clone;
 };
 
 module.exports = Stac;

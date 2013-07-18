@@ -34,10 +34,10 @@ describe('basic test', function () {
     stack.add('three');
 
     stack.remove('two');
-    assert.equal(stack.length(), 2);
+    assert.equal(stack.length, 2);
 
     stack.remove('foo');
-    assert.equal(stack.length(), 2);
+    assert.equal(stack.length, 2);
   });
 
   it('first() - adds items to the front of the stack', function () {
@@ -56,6 +56,22 @@ describe('basic test', function () {
     assert.equal(stack.pop(), 'green');
   });
 
+  it('clone() - can clone the stack', function () {
+    var clone;
+
+    stack.add('one');
+    stack.add('two');
+    stack.add('three');
+
+    clone = stack.clone();
+
+    stack.remove('two');
+    clone.add('four');
+
+    assert.equal(stack.length, 2);
+    assert.equal(clone.length, 4);
+  });
+
   it('can deal with objects in the stack', function () {
     var brian = {
       name: 'Brian',
@@ -71,7 +87,7 @@ describe('basic test', function () {
 
     stack.remove(brian);
 
-    assert.equal(stack.length(), 1);
+    assert.equal(stack.length, 1);
     assert.equal(stack.pop(), carlos);
   });
 
