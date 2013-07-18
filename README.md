@@ -5,6 +5,7 @@ Maintain a sorted stack of things.
 
 [![build status](https://secure.travis-ci.org/cpsubrian/node-stac.png)](http://travis-ci.org/cpsubrian/node-stac)
 
+![Puzzle](http://www.stageslearning.com/files/free-resources/blog_images/ring%20stack.jpg)
 
 - - -
 
