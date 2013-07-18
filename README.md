@@ -6,7 +6,6 @@ Maintain a sorted stack of things.
 [![build status](https://secure.travis-ci.org/cpsubrian/node-stac.png)](http://travis-ci.org/cpsubrian/node-stac)
 
 
-
 - - -
 
 ### Developed by [Terra Eclipse](http://www.terraeclipse.com)
