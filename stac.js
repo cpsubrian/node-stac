@@ -11,8 +11,8 @@ function Stac(options) {
   this._defaultVal = options.defaultVal || 0;
 
   this._comparator = options.comparator || function (a, b) {
-    if (a.val === b.val) return 0;
-    return a.val < b.val ? -1 : 1;
+    if (a === b) return 0;
+    return a < b ? -1 : 1;
   };
 
   this.__defineGetter__('length', function () {
@@ -20,9 +20,15 @@ function Stac(options) {
   });
 }
 
-Stac.prototype._getVal = function (obj) {
-  if (typeof obj[this._sortBy] !== 'undefined') {
-    return obj[this._sortBy];
+Stac.prototype._getVal = function (item) {
+  if (typeof item.val !== 'undefined') {
+    return item.val;
+  }
+  if (typeof this._sortBy === 'function') {
+    return this._sortBy(item.obj);
+  }
+  if (typeof item.obj[this._sortBy] !== 'undefined') {
+    return item.obj[this._sortBy];
   }
   return this._defaultVal;
 };
@@ -32,7 +38,7 @@ Stac.prototype._sort = function () {
   if (this._sorted) return;
   this._stack.sort(function (a, b) {
     if ((a.first === b.first) && (a.last === b.last)) {
-      return self._comparator(a, b);
+      return self._comparator(self._getVal(a), self._getVal(b));
     }
     else if (a.first || b.last) {
       return -1;
@@ -51,7 +57,7 @@ Stac.prototype.add = function (val, obj) {
   }
 
   var item = {
-    val: (typeof val !== 'undefined') ? val : this._getVal(obj),
+    val: val,
     obj: obj
   };
 
@@ -77,7 +83,7 @@ Stac.prototype.first = Stac.prototype.unshift = function (val, obj) {
 
   var item = {
     first: true,
-    val: (typeof val !== 'undefined') ? val : this._getVal(obj),
+    val: val,
     obj: obj
   };
 
@@ -93,7 +99,7 @@ Stac.prototype.last = Stac.prototype.push = function (val, obj) {
 
   var item = {
     last: true,
-    val: (typeof val !== 'undefined') ? val : this._getVal(obj),
+    val: val,
     obj: obj
   };
 

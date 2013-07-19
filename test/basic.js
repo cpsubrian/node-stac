@@ -154,6 +154,45 @@ describe('basic test', function () {
     assert.equal(stack.shift().name, 'Bobby');
   });
 
+  it('can sort with a custom sortBy', function () {
+    stack = createStac({
+      sortBy: function (item) {
+        return item.width * item.height;
+      }
+    });
+
+    stack.add({color: 'red', width: 5, height: 4});
+    stack.add({color: 'green', width: 1, height: 2});
+    stack.add({color: 'blue', width: 8, height: 2});
+
+    assert.equal(stack.pop().color, 'red');
+    assert.equal(stack.shift().color, 'green');
+  });
+
+  it('can sort with a custom comparator', function () {
+    stack = createStac({
+      sortBy: 'medal',
+      comparator: function (a, b) {
+        if (a === 'gold') {
+          return 1;
+        }
+        if (b == 'gold') {
+          return -1;
+        }
+        if (a === 'silver') {
+          return 1;
+        }
+        return 0;
+      }
+    });
+
+    stack.add({name: 'László Cseh', medal: 'bronze'});
+    stack.add({name: 'Michael Phelps', medal: 'gold'});
+    stack.add({name: 'Ryan Lochte', medal: 'silver'});
+
+    assert.equal(stack.pop().name, 'Michael Phelps');
+    assert.equal(stack.pop().name, 'Ryan Lochte');
+  });
 
 });
 
