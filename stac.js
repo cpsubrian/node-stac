@@ -101,6 +101,17 @@ Stac.prototype.last = Stac.prototype.push = function (val, obj) {
   this._sorted = false;
 };
 
+Stac.prototype.items = Stac.prototype.toJSON = function () {
+  this._sort();
+  return this._stack.map(function (item) {
+    return item.obj;
+  });
+};
+
+Stac.prototype.map = function (iterator, thisArg) {
+  return this.items().map(iterator, thisArg);
+};
+
 Stac.prototype.forEach = function (iterator, thisArg) {
   this._sort();
   this._stack.forEach(function (item, i) {

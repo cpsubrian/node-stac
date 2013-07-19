@@ -7,6 +7,50 @@ Maintain a sorted stack of things.
 
 ![Puzzle](http://www.stageslearning.com/files/free-resources/blog_images/ring%20stack.jpg)
 
+
+Examples
+--------
+
+*Add arbitrary things to a stack*
+```js
+var Stac = require('stac')
+  , stack = new Stac();
+
+stack.add('A');
+stack.add(23);
+stack.add(['foo', 'bar']);
+
+stack.first({my: 'Object'});
+stack.last('The End');
+
+console.log(stack.items());
+// [ { my: 'Object' }, 'A', 23, [ 'foo', 'bar' ], 'The End']
+```
+
+*Add things to a stack with weights*
+```js
+var Stac = require('stac')
+  , stack = new Stac();
+
+stack.add(3, 'C');
+stack.add(1, 'A');
+stack.add(4, 'D');
+stack.add(2, 'B');
+
+stack.forEach(function (letter) {
+  console.log(letter);
+});
+// A
+// B
+// C
+// D
+```
+
+API
+---
+
+
+
 - - -
 
 ### Developed by [Terra Eclipse](http://www.terraeclipse.com)

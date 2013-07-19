@@ -26,8 +26,7 @@ describe('basic test', function () {
     stack.add(1, 'one');
     stack.add(3, 'three');
 
-    assert.equal(stack.shift(), 'one');
-    assert.equal(stack.pop(), 'three');
+    assert.deepEqual(stack.items(), ['one', 'two', 'three']);
   });
 
   it('remove() - removes items', function () {
@@ -112,7 +111,7 @@ describe('basic test', function () {
     assert.equal(stack.shift().name, 'Orange');
   });
 
-  it('can loop over the items', function () {
+  it('forEach() - can loop over the items', function () {
     var check = [];
 
     stack.add(1);
@@ -124,6 +123,20 @@ describe('basic test', function () {
     });
 
     assert.deepEqual(check, [1, 2, 3]);
+  });
+
+  it('map() - can map the items', function () {
+    var mapped;
+
+    stack.add(1);
+    stack.add(2);
+    stack.add(3);
+
+    mapped = stack.map(function (num) {
+      return num + 1;
+    });
+
+    assert.deepEqual(mapped, [2, 3, 4]);
   });
 
 });
