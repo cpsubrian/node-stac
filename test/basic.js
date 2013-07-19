@@ -73,44 +73,6 @@ describe('basic test', function () {
     assert.equal(clone.length, 4);
   });
 
-  it('can deal with objects in the stack', function () {
-    var brian = {
-      name: 'Brian',
-      handle: 'cpsubrian'
-    };
-    var carlos = {
-      name: 'Carlos',
-      handle: 'carlos8f'
-    };
-
-    stack.add(brian);
-    stack.add(carlos);
-
-    stack.remove(brian);
-
-    assert.equal(stack.length, 1);
-    assert.equal(stack.pop(), carlos);
-  });
-
-  it('can work with the default property (weight)', function () {
-    stack.add({
-      name: 'Apple',
-      weight: 4
-    });
-    stack.add({
-      name: 'Orange',
-      weight: 10
-    });
-    stack.add({
-      name: 'Banana',
-      weight: 1
-    });
-
-    assert.equal(stack.shift().name, 'Banana');
-    assert.equal(stack.shift().name, 'Apple');
-    assert.equal(stack.shift().name, 'Orange');
-  });
-
   it('forEach() - can loop over the items', function () {
     var check = [];
 
@@ -138,6 +100,60 @@ describe('basic test', function () {
 
     assert.deepEqual(mapped, [2, 3, 4]);
   });
+
+  it('can deal with objects in the stack', function () {
+    var brian = {
+      name: 'Brian',
+      handle: 'cpsubrian'
+    };
+    var carlos = {
+      name: 'Carlos',
+      handle: 'carlos8f'
+    };
+
+    stack.add(brian);
+    stack.add(carlos);
+
+    stack.remove(brian);
+
+    assert.equal(stack.length, 1);
+    assert.equal(stack.pop(), carlos);
+  });
+
+  it('can sort with the default property (weight)', function () {
+    stack.add({
+      name: 'Apple',
+      weight: 4
+    });
+    stack.add({
+      name: 'Orange',
+      weight: 10
+    });
+    stack.add({
+      name: 'Banana',
+      weight: 1
+    });
+
+    assert.equal(stack.shift().name, 'Banana');
+    assert.equal(stack.shift().name, 'Apple');
+    assert.equal(stack.shift().name, 'Orange');
+  });
+
+  it('can sort with a custom property', function () {
+    stack = createStac({
+      sortBy: 'age'
+    });
+
+    stack.add({name: 'Joe', age: 23});
+    stack.add({name: 'Gramps', age: 67});
+    stack.add({name: 'May', age: 34});
+    stack.add({name: 'Bobby', age: 12});
+
+
+    assert.equal(stack.pop().name, 'Gramps');
+    assert.equal(stack.shift().name, 'Bobby');
+  });
+
 
 });
 

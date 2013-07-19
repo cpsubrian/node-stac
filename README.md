@@ -13,8 +13,8 @@ Examples
 
 *Add arbitrary things to a stack*
 ```js
-var Stac = require('stac')
-  , stack = new Stac();
+var createStac = require('stac')
+  , stack = createStac();
 
 stack.add('A');
 stack.add(23);
@@ -29,8 +29,8 @@ console.log(stack.items());
 
 *Add things to a stack with weights*
 ```js
-var Stac = require('stac')
-  , stack = new Stac();
+var createStac = require('stac')
+  , stack = createStac();
 
 stack.add(3, 'C');
 stack.add(1, 'A');

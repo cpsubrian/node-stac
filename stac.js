@@ -7,7 +7,7 @@ function Stac(options) {
   this._options = options;
   this._sorted = false;
   this._stack = [];
-  this._prop = options.prop || 'weight';
+  this._sortBy = options.sortBy || 'weight';
   this._defaultVal = options.defaultVal || 0;
 
   this._comparator = options.comparator || function (a, b) {
@@ -21,8 +21,8 @@ function Stac(options) {
 }
 
 Stac.prototype._getVal = function (obj) {
-  if (typeof obj[this._prop] !== 'undefined') {
-    return obj[this._prop];
+  if (typeof obj[this._sortBy] !== 'undefined') {
+    return obj[this._sortBy];
   }
   return this._defaultVal;
 };
