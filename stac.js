@@ -103,7 +103,9 @@ Stac.prototype.last = Stac.prototype.push = function (val, obj) {
 
 Stac.prototype.forEach = function (iterator, thisArg) {
   this._sort();
-  this._stack.forEach(iterator, thisArg);
+  this._stack.forEach(function (item, i) {
+    iterator.call(thisArg, item.obj, i);
+  }, thisArg);
 };
 
 Stac.prototype.pop = function () {

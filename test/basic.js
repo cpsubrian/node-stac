@@ -112,5 +112,19 @@ describe('basic test', function () {
     assert.equal(stack.shift().name, 'Orange');
   });
 
+  it('can loop over the items', function () {
+    var check = [];
+
+    stack.add(1);
+    stack.add(2);
+    stack.add(3);
+
+    stack.forEach(function (num) {
+      check.push(num);
+    });
+
+    assert.deepEqual(check, [1, 2, 3]);
+  });
+
 });
 
