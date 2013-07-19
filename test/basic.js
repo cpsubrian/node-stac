@@ -17,6 +17,8 @@ describe('basic test', function () {
     assert.equal(stack.shift(), 'one');
     assert.equal(stack.pop(), 'three');
     assert.equal(stack.pop(), 'two');
+    assert.equal(stack.pop(), undefined);
+    assert.equal(stack.shift(), undefined);
   });
 
   it('add() - adds items at a specific value', function () {

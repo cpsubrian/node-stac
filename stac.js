@@ -108,12 +108,14 @@ Stac.prototype.forEach = function (iterator, thisArg) {
 
 Stac.prototype.pop = function () {
   this._sort();
-  return this._stack.pop().obj;
+  var item = this._stack.pop();
+  return item ? item.obj : undefined;
 };
 
 Stac.prototype.shift = function () {
   this._sort();
-  return this._stack.shift().obj;
+  var item = this._stack.shift();
+  return item ? item.obj : undefined;
 };
 
 Stac.prototype.clone = function () {
