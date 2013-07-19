@@ -137,4 +137,6 @@ Stac.prototype.clone = function () {
   return clone;
 };
 
-module.exports = Stac;
+module.exports = function createStac (options) {
+  return new Stac(options);
+};

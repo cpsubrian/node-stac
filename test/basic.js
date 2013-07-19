@@ -1,10 +1,10 @@
-var Stac = require('../');
+var createStac = require('../');
 
 describe('basic test', function () {
   var stack;
 
   beforeEach(function () {
-    stack = new Stac();
+    stack = createStac();
   });
 
   it('add() - adds items in insertion order', function () {
