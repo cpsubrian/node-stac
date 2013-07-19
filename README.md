@@ -90,49 +90,53 @@ var another = createStac({
 });
 ```
 
-### stack.add([val], item)
+### Methods
+
+Methods of `Stac` objects.
+
+**stack.add ( [val], item )**
 
 Add an item to the stack. Optionally pass a value to sort by.
 
-### stack.remove(item)
+**stack.remove ( item )**
 
 Remove an item from the stack.
 
-### stack.first([val], item) / stack.unshift([val], item)
+**stack.first ( [val], item ) / stack.unshift ( [val], item )**
 
 Add an item to the front of the stack. Items inserted this way will *always* be sorted
 in front of items added with `add()` or `last()`. Within the *first* set, items
 will be sorted normally.
 
-### stack.last([val], item) / stack.push([val], item)
+**stack.last ( [val], item ) / stack.push ( [val], item )**
 
 Add an item to the end of the stack. Items inserted this way will *always* be
 sorted behind items added with `add()` or `first()`. Within the *last* set, items
 will be sorted normally.
 
-### stack.clone()
+**stack.clone()**
 
 Returns a copy of a stack.
 
 *Note: items in the stack will still reference the originals.*
 
-### stack.items() / stack.toJSON()
+**stack.items() / stack.toJSON()**
 
 Returns the sorted array of items in the stack.
 
-### stack.forEach(iterator, [thisArg])
+**stack.forEach ( iterator, [thisArg] )**
 
 Iterate over items in the stack (just like `Array.prototype.forEach`).
 
-### stack.map(func, [thisArg])
+**stack.map ( func, [thisArg] )**
 
 Returns a mapped representation of the stack (just like an `Array.prototype.map`).
 
-## stack.pop() / stack.shift()
+**stack.pop() / stack.shift()**
 
 Returns and removes the last/first item from the stack (similar to `Array.prototype.map`).
 
-### stack.length
+**stack.length**
 
 Returns the current length of the stack.
 
