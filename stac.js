@@ -146,3 +146,4 @@ Stac.prototype.clone = function () {
 module.exports = function createStac (options) {
   return new Stac(options);
 };
+module.exports.Stac = Stac;
