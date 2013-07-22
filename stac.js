@@ -63,6 +63,7 @@ Stac.prototype.add = function (val, obj) {
 
   this._stack.push(item);
   this._sorted = false;
+  return this;
 };
 
 Stac.prototype.remove = function (obj) {
@@ -73,6 +74,7 @@ Stac.prototype.remove = function (obj) {
     }
   }
   this._sorted = false;
+  return this;
 };
 
 Stac.prototype.first = Stac.prototype.unshift = function (val, obj) {
@@ -89,6 +91,7 @@ Stac.prototype.first = Stac.prototype.unshift = function (val, obj) {
 
   this._stack.push(item);
   this._sorted = false;
+  return this;
 };
 
 Stac.prototype.last = Stac.prototype.push = function (val, obj) {
@@ -105,6 +108,15 @@ Stac.prototype.last = Stac.prototype.push = function (val, obj) {
 
   this._stack.push(item);
   this._sorted = false;
+  return this;
+};
+
+Stac.prototype.multi = function (method, items) {
+  var self = this;
+  items.forEach(function (item) {
+    self[method](item);
+  });
+  return this;
 };
 
 Stac.prototype.items = Stac.prototype.toJSON = function () {
@@ -141,13 +153,6 @@ Stac.prototype.clone = function () {
   var clone = new Stac(this._options);
   clone._stack = this._stack.slice(0);
   return clone;
-};
-
-Stac.prototype.multi = function (method, items) {
-  var self = this;
-  items.forEach(function (item) {
-    self[method](item);
-  });
 };
 
 module.exports = function createStac (options) {
