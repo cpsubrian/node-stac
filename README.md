@@ -12,6 +12,7 @@ Examples
 --------
 
 **Add arbitrary things to a stack**
+
 ```js
 var createStac = require('stac')
   , stack = createStac();
@@ -29,6 +30,7 @@ console.log(stack.items());
 
 
 **Add things to a stack with weights**
+
 ```js
 var createStac = require('stac')
   , stack = createStac();
@@ -48,6 +50,7 @@ stack.forEach(function (letter) {
 ```
 
 **Advanced usage: custom sortBy and comparator**
+
 ```js
 var createStac = require('stac')
 var stack = createStac({
@@ -89,6 +92,18 @@ var another = createStac({
   sortBy: 'age'
 });
 ```
+
+#### options
+
+- **sortBy** - String or function. If string, and items are objects, then the value
+           of the property at this key will be used for sorting. If function,
+           then the function will be called with the item to determine its
+           sort value. Default: `'weight'`.
+- **defaultVal** - If no sorting value is provided or can be determined for an item,
+               then this value will be used. Default: `0`.
+- **comparator** - A custom comparator function `(a, b)`. Will be called with the
+               values of two items to compare. Should return 0, 1, or -1; similar
+               to how `Array.prototype.sort()` is used. Default: `(sort by numeric value)`.
 
 ### Methods
 
