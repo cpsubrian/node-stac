@@ -129,6 +129,10 @@ Add an item to the end of the stack. Items inserted this way will *always* be
 sorted behind items added with `add()` or `first()`. Within the *last* set, items
 will be sorted normally.
 
+**stack.multi (method, items)**
+
+Helper to operate on multiple items with one call. Example: `stack.multi('add', ['A', 'B', 'C'])`.
+
 **stack.clone()**
 
 Returns a copy of a stack.

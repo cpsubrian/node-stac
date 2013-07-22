@@ -143,6 +143,13 @@ Stac.prototype.clone = function () {
   return clone;
 };
 
+Stac.prototype.multi = function (method, items) {
+  var self = this;
+  items.forEach(function (item) {
+    self[method](item);
+  });
+};
+
 module.exports = function createStac (options) {
   return new Stac(options);
 };

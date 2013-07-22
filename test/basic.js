@@ -101,6 +101,11 @@ describe('basic test', function () {
     assert.deepEqual(mapped, [2, 3, 4]);
   });
 
+  it('multi() - can operate on multiple items', function () {
+    stack.multi('add', [1, 2, 3]);
+    assert.deepEqual(stack.items(), [1, 2, 3]);
+  });
+
   it('can deal with objects in the stack', function () {
     var brian = {
       name: 'Brian',
