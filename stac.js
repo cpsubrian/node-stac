@@ -10,7 +10,7 @@ function Stac(options) {
   this._sortBy = options.sortBy || 'weight';
   this._defaultVal = options.defaultVal || 0;
 
-  this._comparator = options.comparator || function (a, b) {
+  this._comparator = options.comparator || function comparator (a, b) {
     if (a === b) return 0;
     return a < b ? -1 : 1;
   };
@@ -36,7 +36,7 @@ Stac.prototype._getVal = function (item) {
 Stac.prototype._sort = function () {
   var self = this;
   if (this._sorted) return;
-  this._stack.sort(function (a, b) {
+  this._stack.sort(function sort (a, b) {
     if ((a.first === b.first) && (a.last === b.last)) {
       return self._comparator(self._getVal(a), self._getVal(b));
     }
@@ -113,7 +113,7 @@ Stac.prototype.last = Stac.prototype.push = function (val, obj) {
 
 Stac.prototype.multi = function (method, items) {
   var self = this;
-  items.forEach(function (item) {
+  items.forEach(function multiIterator (item) {
     self[method](item);
   });
   return this;
@@ -121,7 +121,7 @@ Stac.prototype.multi = function (method, items) {
 
 Stac.prototype.items = Stac.prototype.toJSON = function () {
   this._sort();
-  return this._stack.map(function (item) {
+  return this._stack.map(function itemsIterator (item) {
     return item.obj;
   });
 };
@@ -132,7 +132,7 @@ Stac.prototype.map = function (iterator, thisArg) {
 
 Stac.prototype.forEach = function (iterator, thisArg) {
   this._sort();
-  this._stack.forEach(function (item, i) {
+  this._stack.forEach(function forEachIterator (item, i) {
     iterator.call(thisArg, item.obj, i);
   }, thisArg);
 };
