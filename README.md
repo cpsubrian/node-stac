@@ -109,53 +109,61 @@ var another = createStac({
 
 Methods of `Stac` objects.
 
-**stack.add ( [val], item )**
+**add ( [val], item )**
 
 Add an item to the stack. Optionally pass a value to sort by.
 
-**stack.remove ( item )**
+**remove ( item )**
 
 Remove an item from the stack.
 
-**stack.first ( [val], item ) / stack.unshift ( [val], item )**
+**first ( [val], item ) | unshift ( [val], item )**
 
 Add an item to the front of the stack. Items inserted this way will *always* be sorted
 in front of items added with `add()` or `last()`. Within the *first* set, items
 will be sorted normally.
 
-**stack.last ( [val], item ) / stack.push ( [val], item )**
+**last ( [val], item ) | push ( [val], item )**
 
 Add an item to the end of the stack. Items inserted this way will *always* be
 sorted behind items added with `add()` or `first()`. Within the *last* set, items
 will be sorted normally.
 
-**stack.multi (method, items)**
+**multi (method, items)**
 
 Helper to operate on multiple items with one call. Example: `stack.multi('add', ['A', 'B', 'C'])`.
 
-**stack.clone()**
+**clone()**
 
 Returns a copy of a stack.
 
 *Note: items in the stack will still reference the originals.*
 
-**stack.items() / stack.toJSON()**
+**items() | toJSON()**
 
 Returns the sorted array of items in the stack.
 
-**stack.forEach ( iterator, [thisArg] )**
+**forEach ( iterator, [thisArg] )**
 
 Iterate over items in the stack (just like `Array.prototype.forEach`).
 
-**stack.map ( func, [thisArg] )**
+**map ( func, [thisArg] )**
 
 Returns a mapped representation of the stack (just like an `Array.prototype.map`).
 
-**stack.pop() / stack.shift()**
+**pop()**
 
-Returns and removes the last/first item from the stack (similar to `Array.prototype.map`).
+Returns and removes the last item from the stack (similar to `Array.prototype.pop`).
 
-**stack.length**
+**shift()**
+
+Returns and removes the first item from the stack (similar to `Array.prototype.shift`).
+
+### Properties
+
+Properties of `Stac` objects.
+
+**length**
 
 Returns the current length of the stack.
 
