@@ -152,6 +152,7 @@ Stac.prototype.shift = function () {
 Stac.prototype.clone = function () {
   var clone = new Stac(this._options);
   clone._stack = this._stack.slice(0);
+  clone._sorted = this._sorted;
   return clone;
 };
 
