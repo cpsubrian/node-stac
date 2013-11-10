@@ -199,5 +199,11 @@ describe('basic test', function () {
     assert.equal(stack.pop().name, 'Ryan Lochte');
   });
 
+  it('can be created with an existing array', function () {
+    stack = createStac(['A', 'B', 'C', 'D']);
+    assert.equal(stack.pop(), 'D');
+    assert.equal(stack.shift(), 'A');
+  });
+
 });
 

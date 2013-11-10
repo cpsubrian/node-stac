@@ -1,16 +1,20 @@
 
 function Stac(options) {
-  var self = this;
+  var self = this
+    , toAdd = null;
 
-  options = options || {};
+  if (Array.isArray(options)) {
+    toAdd = options;
+    options = {};
+  }
 
-  this._options = options;
-  this._sorted = false;
   this._stack = [];
-  this._sortBy = options.sortBy || 'weight';
-  this._defaultVal = options.defaultVal || 0;
+  this._sorted = false;
+  this._options = options || {};
+  this._sortBy = this._options.sortBy || 'weight';
+  this._defaultVal = this._options.defaultVal || 0;
 
-  this._comparator = options.comparator || function comparator (a, b) {
+  this._comparator = this._options.comparator || function comparator (a, b) {
     if (a === b) return 0;
     return a < b ? -1 : 1;
   };
@@ -18,6 +22,10 @@ function Stac(options) {
   this.__defineGetter__('length', function () {
     return self._stack.length;
   });
+
+  if (toAdd) {
+    this.multi('add', toAdd);
+  }
 }
 
 Stac.prototype._getVal = function (item) {
