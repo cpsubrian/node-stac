@@ -205,5 +205,16 @@ describe('basic test', function () {
     assert.equal(stack.shift(), 'A');
   });
 
+  it('can be created with options and an existing array', function () {
+    stack = createStac({sortBy: 'age'}, [
+      {name: 'Joe', age: 23},
+      {name: 'Gramps', age: 67},
+      {name: 'May', age: 34},
+      {name: 'Bobby', age: 12}
+    ]);
+    assert.equal(stack.pop().name, 'Gramps');
+    assert.equal(stack.shift().name, 'Bobby');
+  });
+
 });
 

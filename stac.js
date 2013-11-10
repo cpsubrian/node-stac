@@ -1,10 +1,9 @@
 
-function Stac(options) {
-  var self = this
-    , toAdd = null;
+function Stac(options, items) {
+  var self = this;
 
   if (Array.isArray(options)) {
-    toAdd = options;
+    items = options;
     options = {};
   }
 
@@ -23,8 +22,8 @@ function Stac(options) {
     return self._stack.length;
   });
 
-  if (toAdd) {
-    this.multi('add', toAdd);
+  if (items) {
+    this.multi('add', items);
   }
 }
 
@@ -164,7 +163,7 @@ Stac.prototype.clone = function () {
   return clone;
 };
 
-module.exports = function createStac (options) {
-  return new Stac(options);
+module.exports = function createStac (options, items) {
+  return new Stac(options, items);
 };
 module.exports.Stac = Stac;
