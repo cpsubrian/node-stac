@@ -1,7 +1,13 @@
-class Stac {
-  constructor(options, items) {
-    var self = this;
+export default class Stac {
+  private _stack: any[];
+  private _sorted: boolean;
+  private _options: any;
+  private _sortBy: string;
+  private _defaultVal: number;
+  private _comparator: (a: any, b: any) => number;
+  [key: string]: any;
 
+  constructor(options?: Object, items?: any) {
     if (Array.isArray(options)) {
       items = options;
       options = {};
@@ -20,16 +26,16 @@ class Stac {
         return a < b ? -1 : 1;
       };
 
-    this.__defineGetter__("length", function() {
-      return self._stack.length;
-    });
-
     if (items) {
       this.multi("add", items);
     }
   }
 
-  _getVal(item) {
+  get length() {
+    return this._stack.length;
+  }
+
+  _getVal(item: any) {
     if (typeof item.val !== "undefined") {
       return item.val;
     }
@@ -43,11 +49,10 @@ class Stac {
   }
 
   _sort() {
-    var self = this;
     if (this._sorted) return;
-    this._stack.sort(function sort(a, b) {
+    this._stack.sort((a, b) => {
       if (a.first === b.first && a.last === b.last) {
-        return self._comparator(self._getVal(a), self._getVal(b));
+        return this._comparator(this._getVal(a), this._getVal(b));
       } else if (a.first || b.last) {
         return -1;
       } else {
@@ -57,7 +62,7 @@ class Stac {
     this._sorted = true;
   }
 
-  add(val, obj) {
+  add(val: any, obj?: any) {
     if (typeof obj === "undefined") {
       obj = val;
       val = undefined;
@@ -73,7 +78,7 @@ class Stac {
     return this;
   }
 
-  remove(obj) {
+  remove(obj: any) {
     var i = this._stack.length;
     while (i--) {
       if (this._stack[i].obj === obj) {
@@ -84,7 +89,7 @@ class Stac {
     return this;
   }
 
-  first(val, obj) {
+  first(val: any, obj?: any) {
     if (typeof obj === "undefined") {
       obj = val;
       val = undefined;
@@ -101,11 +106,11 @@ class Stac {
     return this;
   }
 
-  unshift(val, obj) {
+  unshift(val: any, obj: any) {
     return this.first(val, obj);
   }
 
-  last(val, obj) {
+  last(val: any, obj?: any) {
     if (typeof obj === "undefined") {
       obj = val;
       val = undefined;
@@ -122,21 +127,20 @@ class Stac {
     return this;
   }
 
-  push(val, obj) {
+  push(val: any, obj?: any) {
     return this.last(val, obj);
   }
 
-  multi(method, items) {
-    var self = this;
-    items.forEach(function multiIterator(item) {
-      self[method](item);
+  multi(method: string, items: any[]) {
+    items.forEach(item => {
+      this[method](item);
     });
     return this;
   }
 
   items() {
     this._sort();
-    return this._stack.map(function itemsIterator(item) {
+    return this._stack.map(item => {
       return item.obj;
     });
   }
@@ -145,15 +149,12 @@ class Stac {
     return this.items();
   }
 
-  map(iterator, thisArg) {
+  map(iterator: (item: any, i: number) => any[], thisArg: any) {
     return this.items().map(iterator, thisArg);
   }
 
-  forEach(iterator, thisArg) {
-    this._sort();
-    this._stack.forEach(function forEachIterator(item, i) {
-      iterator.call(thisArg, item.obj, i);
-    }, thisArg);
+  forEach(iterator: (item: any, i: number) => void, thisArg: any) {
+    return this.items().forEach(iterator, thisArg);
   }
 
   pop() {
@@ -175,9 +176,3 @@ class Stac {
     return clone;
   }
 }
-
-module.exports = function createStac(options, items) {
-  return new Stac(options, items);
-};
-
-module.exports.Stac = Stac;

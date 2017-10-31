@@ -2,12 +2,15 @@
   "name": "stac",
   "version": "1.0.0",
   "description": "Maintain a sorted stack of things.",
-  "main": "stac.js",
+  "main": "./dist/index.js",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "typescript": "^2.5.3"
   },
   "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build",
     "test": "mocha --reporter spec --bail --timeout 5s --require test/common.js"
   },
   "repository": {

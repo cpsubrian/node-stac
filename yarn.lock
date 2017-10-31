@@ -128,6 +128,10 @@ supports-color@4.4.0:
   dependencies:
     has-flag "^2.0.0"
 
+typescript@^2.5.3:
+  version "2.5.3"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-2.5.3.tgz#df3dcdc38f3beb800d4bc322646b04a3f6ca7f0d"
+
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
