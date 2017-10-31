@@ -1,6 +1,6 @@
 {
   "name": "stac",
-  "version": "0.0.12",
+  "version": "1.0.0",
   "description": "Maintain a sorted stack of things.",
   "main": "stac.js",
   "dependencies": {},
