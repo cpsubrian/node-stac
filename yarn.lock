@@ -93,7 +93,7 @@ mkdirp@0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mocha@*:
+mocha@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/mocha/-/mocha-4.0.1.tgz#0aee5a95cf69a4618820f5e51fa31717117daf1b"
   dependencies:
